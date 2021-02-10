@@ -10,28 +10,33 @@ use App\Mail\TestMail;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+    public function sendMail(Request $request) {
+
+        $data = $request -> validate([
+            'mailText' => 'required|min:5'
+        ]);
+       
+        Mail::to(Auth::user() -> email)
+            -> send(new TestMail($data['mailText']));
+
+        return redirect() -> back();
+
+    }
+
     public function index()
     {
+        /*
         $mail = Auth::user() -> email;
 
         Mail::to($mail)
             -> send(new TestMail('ciaociao'));
-
+        */
         return view('home');
     }
 }

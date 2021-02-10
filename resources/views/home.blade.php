@@ -14,7 +14,18 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <form action="{{ route('send-mail') }}" method="POST">
+
+                        @csrf
+                        @method('POST')
+
+                        <label for="mailText">Text Mail: </label>
+                        <input name="mailText" type="text">
+
+                        <br>
+
+                        <input type="submit" value="SEND">
+                    </form>
                 </div>
             </div>
         </div>
