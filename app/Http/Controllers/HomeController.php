@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
+
+use App\Mail\TestMail;
 
 class HomeController extends Controller
 {
@@ -23,6 +27,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $mail = Auth::user() -> email;
+
+        Mail::to($mail)
+            -> send(new TestMail());
+
         return view('home');
     }
 }
