@@ -11,25 +11,18 @@ class TestMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct()
+
+    public $testString;
+
+    public function __construct($testString)
     {
-        //
+        $this -> testString = $testString;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
     public function build()
     {
         return $this
-        -> from('no-reply@laravel.com')
-        -> view('mail.testMail');
+            -> from('no-reply@laravel.com')
+            -> view('mail.testMail');
     }
 }

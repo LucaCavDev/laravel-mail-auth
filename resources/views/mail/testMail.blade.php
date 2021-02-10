@@ -9,7 +9,10 @@
 <body>
 
     <div class="container">
-        Hello World
+        <h1>Hello World to {{ Auth::user() -> name }}</h1>
+        <h2 style="color: red">
+            {{ $testString }}
+        </h2>
     </div>
     
 </body>
